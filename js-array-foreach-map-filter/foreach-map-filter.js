@@ -7,8 +7,8 @@ Examples:
 
 */
 function doubleValues(arr){
-    return arr.map((value) => {
-        return value * 2;
+    return arr.map((element) => {
+        return element * 2;
     });
 }
 
@@ -21,7 +21,9 @@ Examples:
 
 */
 function onlyEvenValues(arr){
-    
+    return arr.filter((element) => {
+        return element % 2 == 0;
+    });
 }
 
 /*
@@ -33,7 +35,10 @@ Examples:
 
 */
 function showFirstAndLast(arr){
-    
+    return arr.map((element) => {
+        chars = Array.from(element);
+        return `${chars[0]}${el[chars.length - 1]}`;
+    });    
 }
 
 /*
@@ -46,7 +51,10 @@ Examples:
 
 */
 function addKeyAndValue(arr,key,value){
-    
+    arr.forEach((element) => {
+        element[key] = value;
+    });
+    return arr;
 }
 
 /*
@@ -60,7 +68,17 @@ Examples:
     vowelCount('I Am awesome and so are you') // {i: 1, a: 4, e: 3, o: 3, u: 1};
 */
 function vowelCount(str){
-   
+   let chars = Array.from(str);
+   let result = {};
+   //Have to use function instead of => because => does not get a 'this'
+   chars.forEach(function(element) {
+       if(element == 'a' || element == 'A')result[element] ? result[element]++ : result[element] = 1;
+       if(element == 'e' || element == 'E')result[element] ? result[element]++ : result[element] = 1;
+       if(element == 'i' || element == 'I')result[element] ? result[element]++ : result[element] = 1;
+       if(element == 'o' || element == 'O')result[element] ? result[element]++ : result[element] = 1;
+       if(element == 'u' || element == 'U')result[element] ? result[element]++ : result[element] = 1;
+   });
+   return result;
 }
 
 /*
@@ -71,7 +89,11 @@ Examples:
     doubleValuesWithMap([1,-2,-3]) // [2,-4,-6]
 */
 
-function doubleValuesWithMap(arr) {}
+function doubleValuesWithMap(arr) {
+    return arr.map((element) => {
+        return element * 2;
+    });
+}
 
 /*
 Write a function called valTimesIndex which accepts an array and returns a new array with each value multiplied by the index it is currently at in the array.
@@ -82,7 +104,9 @@ Examples:
 */
 
 function valTimesIndex(arr){
-    
+    return arr.map((element, index) => {
+        return element * index;
+    });
 }
 
 /*
@@ -93,7 +117,9 @@ Examples:
 */
 
 function extractKey(arr, key){
-    
+    return arr.map((element, index) => {
+        return element[key];
+    })
 }
 
 /*
@@ -104,7 +130,9 @@ Examples:
 */
 
 function extractFullName(arr){
-    
+    return arr.map((element, index) => {
+        return `${element['first']} ${element['last']}`;
+    });
 }
 
 /*
