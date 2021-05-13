@@ -37,7 +37,7 @@ Examples:
 function showFirstAndLast(arr){
     return arr.map((element) => {
         chars = Array.from(element);
-        return `${chars[0]}${el[chars.length - 1]}`;
+        return `${chars[0]}${chars[chars.length - 1]}`;
     });    
 }
 
@@ -70,8 +70,7 @@ Examples:
 function vowelCount(str){
    let chars = Array.from(str);
    let result = {};
-   //Have to use function instead of => because => does not get a 'this'
-   chars.forEach(function(element) {
+   chars.forEach((element) => {
        if(element == 'a' || element == 'A')result[element] ? result[element]++ : result[element] = 1;
        if(element == 'e' || element == 'E')result[element] ? result[element]++ : result[element] = 1;
        if(element == 'i' || element == 'I')result[element] ? result[element]++ : result[element] = 1;
@@ -117,7 +116,7 @@ Examples:
 */
 
 function extractKey(arr, key){
-    return arr.map((element, index) => {
+    return arr.map((element) => {
         return element[key];
     })
 }
@@ -130,7 +129,7 @@ Examples:
 */
 
 function extractFullName(arr){
-    return arr.map((element, index) => {
+    return arr.map((element) => {
         return `${element['first']} ${element['last']}`;
     });
 }
@@ -142,7 +141,11 @@ Examples:
     filterByValue([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner') // [{first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Colt', last:"Steele", isCatOwner: true}]
 */
 
-function filterByValue(arr, key) {}
+function filterByValue(arr, key) {
+    return arr.filter((element) => {
+        return element[key] == true;
+    });
+}
 
 /*
 Write a function called find which accepts an array and a value and returns the first element in the array that has the same value as the second parameter or undefined if the value is not found in the array.
@@ -152,7 +155,12 @@ Examples:
     find([1,2,3,4,5], 10) // undefined
 */
 
-function find(arr, searchValue) {}
+function find(arr, searchValue) {
+    let result = arr.filter((element) => {
+        return element == searchValue;
+    });
+    return result[0];
+}
 
 /*
 Write a function called findInObj which accepts an array of objects, a key, and some value to search for and returns the first found value in the array.
@@ -161,7 +169,12 @@ Examples:
     findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true) // {first: 'Tim', last:"Garcia", isCatOwner: true}
 */
 
-function findInObj(arr, key, searchValue) {}
+function findInObj(arr, key, searchValue) {
+    let result = arr.filter((element) => {
+        return element[key] == searchValue;
+    });
+    return result[0];
+}
 
 /*
 Write a function called removeVowels which accepts a string and returns a new string with all of the vowels (both uppercased and lowercased) removed. Every character in the new string should be lowercased.
@@ -172,7 +185,19 @@ Examples:
     removeVowels('ZZZZZZ') // ('zzzzzz')
 */
 
-function removeVowels(str) {}
+function removeVowels(str) {
+    let chars = Array.from(str);
+    let result = "";
+    chars.forEach((element) => {
+        if(element == 'a' || element == 'A')return;
+        if(element == 'e' || element == 'E')return;
+        if(element == 'i' || element == 'I')return;
+        if(element == 'o' || element == 'O')return;
+        if(element == 'u' || element == 'U')return;
+        result += element;
+    });
+    return result.toLowerCase();
+ }
 
 /*
 Write a function called doubleOddNumbers which accepts an array and returns a new array with all of the odd numbers doubled (HINT - you can use map and filter to double and then filter the odd numbers).
@@ -182,4 +207,11 @@ Examples:
     doubleOddNumbers([4,4,4,4,4]) // []
 */
 
-function doubleOddNumbers(arr) {}
+function doubleOddNumbers(arr) {
+    return arr.filter((element) => {
+        return element % 2 != 0;
+    })
+    .map((element) => {
+        return element * 2;
+    });
+}
